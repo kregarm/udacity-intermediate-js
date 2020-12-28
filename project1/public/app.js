@@ -69,7 +69,7 @@ function createHuman() {
             return response.json();
         }).then(function (data) {
             const human = createHuman();
-            let infographicElemenets = [];
+            const infographicElemenets = [];
 
             // Create a dino object for every entry in the json
             for (let i in data.Dinos) {
