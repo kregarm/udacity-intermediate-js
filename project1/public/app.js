@@ -44,9 +44,9 @@ Dino.prototype.compareDiet = function (human){
 // Create Human Object
 function createHuman() {
     // Convert feet and inches to just inches
-    let feet = document.getElementById('feet').value;
-    let inches = document.getElementById('inches').value;
-    let height = Number(feet) * 12 + Number(inches);
+    const feet = document.getElementById('feet').value;
+    const inches = document.getElementById('inches').value;
+    const height = Number(feet) * 12 + Number(inches);
 
     const human = {
         name: document.getElementById('name').value,
@@ -68,20 +68,20 @@ function createHuman() {
         .then(function(response) {
             return response.json();
         }).then(function (data) {
-            let human = createHuman();
+            const human = createHuman();
             let infographicElemenets = [];
 
             // Create a dino object for every entry in the json
-            for (i in data.Dinos) {
+            for (let i in data.Dinos) {
                 const dino = new Dino (data.Dinos[i]);
                 // Don't compare with Pigeon as it always displays a static fact
                 if (dino.species != 'Pigeon') {
-                    dino.compareDiet(human)
-                    dino.compareHeight(human)
-                    dino.compareWeight(human)
+                    dino.compareDiet(human);
+                    dino.compareHeight(human);
+                    dino.compareWeight(human);
                 }
                 infographicElemenets.push(dino);
-            };
+            }
 
             // Insert human to 4th place to properly trigger the rendering
             infographicElemenets.splice(4, 0, human);
@@ -99,9 +99,9 @@ function createHuman() {
 
 // Remove form from screen
 function clearUiElements(uiElement) {
+    const formElement = document.getElementById('dino-compare');
     switch(uiElement) {
     case 'form':
-        const formElement = document.getElementById('dino-compare');
         formElement.style.display = 'none';
         break
     default:
@@ -116,26 +116,26 @@ function createInfographic(infographicElemenets) {
         return Math.floor(Math.random() * factArray.length)
     }
 
-    let fragment = document.createDocumentFragment();
-    let grid = document.getElementById('grid')
+    const fragment = document.createDocumentFragment();
+    const grid = document.getElementById('grid')
 
     for (let i = 0; i < infographicElemenets.length; i++) {
-        let div = document.createElement('div');
+        const div = document.createElement('div');
         div.setAttribute('class','grid-item');
 
         // Skip fact property for human object as it doesn't have one
         if (i != 4) {
-            let fact = document.createElement('p');
-            randomFactNumber = getRandomNumber(infographicElemenets[i].fact);
+            const fact = document.createElement('p');
+            const randomFactNumber = getRandomNumber(infographicElemenets[i].fact);
             fact.innerText = infographicElemenets[i].fact[randomFactNumber];
             div.appendChild(fact);
         }
 
-        let name = document.createElement('h3');
+        const name = document.createElement('h3');
         // Human doesn't have a species property, but has a name
         name.innerText = infographicElemenets[i].species || infographicElemenets[i].name;
 
-        let image = document.createElement('img');
+        const image = document.createElement('img');
         image.setAttribute('src', infographicElemenets[i].image);
 
         div.appendChild(name);
@@ -144,4 +144,4 @@ function createInfographic(infographicElemenets) {
     }
     
     grid.appendChild(fragment);
-};
+}
