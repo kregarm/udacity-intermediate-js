@@ -11,10 +11,10 @@ function Dino (dino) {
 
 Dino.prototype.compareWeight = function (human){
     if (this.weight > human.weight) {
-        let weightDifference = this.weight - human.weight;
+        const weightDifference = this.weight - human.weight;
         this.fact.push(`${this.species} was ${weightDifference} lbs heavier than you are`);
     } else if (this.weight < human.weight) {
-        let weightDifference = human.weight - this.weight;
+        const weightDifference = human.weight - this.weight;
         this.fact.push(`You are ${weightDifference} lbs heavier than ${this.species} was`);
     } else {
         this.fact.push(`You and ${this.species} have the same weihgt!`);
@@ -23,10 +23,10 @@ Dino.prototype.compareWeight = function (human){
 
 Dino.prototype.compareHeight = function (human){
     if (this.height > human.height) {
-        let heightDifference = this.height - human.height;
+        const heightDifference = this.height - human.height;
         this.fact.push(`${this.species} was ${heightDifference} inches taller than you are`);
     } else if (this.height < human.height) {
-        let heightDifference = human.height - this.height;
+        const heightDifference = human.height - this.height;
         this.fact.push(`You are ${heightDifference} inches taller than ${this.species} was`);
     } else {
         this.fact.push(`You and ${this.species} have the same heihgt!`);
